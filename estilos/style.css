@@ -1,47 +1,49 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Passion+One:wght@400;700;900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Passion+One:wght@400;700;900&family=Sriracha&display=swap');
+/* Importação única e limpa */
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Sriracha&display=swap');
 
 :root {
-    --fonte1: Verdana, Geneva, Tahoma, sans-serif;
-    --fonte2: 'Passion One', cursive;
-    --fonte3: 'Sriracha', cursive;
+    --fonte-padrao: Verdana, Geneva, Tahoma, sans-serif;
+    --fonte-destaque: 'Passion One', cursive;
+    --fonte-poesia: 'Sriracha', cursive;
+    --cor-fundo: darkgray;
+    --cor-texto-claro: white;
+    --cor-texto-escuro: black;
 }
-
 
 * {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box; /* Evita que padding aumente o tamanho dos elementos */
 }
 
 html, body {
     min-height: 100vh;
-    background-color: darkgray;
-    font-family: var(--fonte1);
+    background-color: var(--cor-fundo);
+    font-family: var(--fonte-padrao);
 }
 
 header {
     background-color: black;
-    color: white;
+    color: var(--cor-texto-claro);
     text-align: center;
+    padding: 50px 10px;
 }
 
 header > h1 {
-    padding-top: 50px;
     font-variant: small-caps; 
-    font-family: var(--fonte2);
-    font-size: 10vw;
+    font-family: var(--fonte-destaque);
+    font-size: clamp(3em, 8vw, 10em); /* Fonte responsiva com limites */
 }
 
 header > p {
-    padding-bottom: 50px;
-    font-size: 2vw;
+    font-size: clamp(1em, 2vw, 2em);
+    margin-top: 10px;
 }
 
 header a, footer a {
-    color: white;
+    color: var(--cor-texto-claro);
     text-decoration: none;
     font-weight: bolder;
 }
@@ -51,12 +53,10 @@ header a:hover, footer a:hover {
 }
 
 section {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding: 10vh 30px;
     line-height: 2em;
-    padding-left: 30px;
-    font-family: var(--fonte3);
-    font-size: 3vw;
+    font-family: var(--fonte-poesia);
+    font-size: clamp(1.2em, 3vw, 2.5em);
 }
 
 section > p {
@@ -65,40 +65,46 @@ section > p {
 
 section.normal {
     background-color: white;
-    color: black;
+    color: var(--cor-texto-escuro);
 }
 
 section.imagem {
     background-color: gray;
-    color: white;
-    box-shadow: inset 6px 6px 13px 0px black;
+    color: var(--cor-texto-claro);
+    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.7);
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; /* Efeito Parallax */
+}
+
+/* Ajuste para o efeito parallax funcionar melhor no mobile */
+@media (max-width: 600px) {
+    section.imagem {
+        background-attachment: scroll;
+    }
 }
 
 section.imagem > p {
     display: inline-block;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.507);
-    text-shadow: 1px 2px 0px black;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 3px black;
+    border-radius: 5px;
 }
 
 section#img01 {
-    background-image: url(../imagens/background001.jpg);
+    background-image: url('../imagens/background001.jpg');
     background-position: right center;
-    background-size: cover;
 }
 
 section#img02 {
-    background-image: url(../imagens/background002.jpg);
-    background-size: cover;
+    background-image: url('../imagens/background002.jpg');
     background-position: center center;
 }
 
 footer {
     background-color: black;
-    color: white;
+    color: var(--cor-texto-claro);
     text-align: center;
-    padding: 10px;
-    font-size: 2vw;
+    padding: 20px;
+    font-size: 1em;
 }
